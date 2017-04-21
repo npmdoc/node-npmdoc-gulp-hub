@@ -1,0 +1,173 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/frankwallis/gulp-hub">gulp-hub (v0.8.0)</a>
+</h1>
+<h4>A gulp plugin to run tasks from multiple gulpfiles</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-hub">module gulp-hub</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-hub.gulp-hub">
+            function <span class="apidocSignatureSpan"></span>gulp-hub
+            <span class="apidocSignatureSpan">(pattern)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">gulp-hub.</span>hub_util</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-hub.hub_util">module gulp-hub.hub_util</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-hub.hub_util.isValidHubFile">
+            function <span class="apidocSignatureSpan">gulp-hub.hub_util.</span>isValidHubFile
+            <span class="apidocSignatureSpan">(file)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-hub" id="apidoc.module.gulp-hub">module gulp-hub</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-hub.gulp-hub" id="apidoc.element.gulp-hub.gulp-hub">
+        function <span class="apidocSignatureSpan"></span>gulp-hub
+        <span class="apidocSignatureSpan">(pattern)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function hub(pattern) {
+    var callsite = getCallSite();
+    var recursive = inhub;
+    inhub = true;
+
+    loadFiles(pattern, path.dirname(callsite));
+
+    // only create the task tree once
+    if (!recursive) {
+        for (var name in tasks)
+            addTask(tasks[name]);
+
+        inhub = false;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-hub.hub_util" id="apidoc.module.gulp-hub.hub_util">module gulp-hub.hub_util</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-hub.hub_util.isValidHubFile" id="apidoc.element.gulp-hub.hub_util.isValidHubFile">
+        function <span class="apidocSignatureSpan">gulp-hub.hub_util.</span>isValidHubFile
+        <span class="apidocSignatureSpan">(file)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isValidHubFile = function (file) {
+    if (
+        _.isPlainObject( file ) &amp;&amp;
+        file.relativePath &amp;&amp; typeof file.relativePath === 'string' &amp;&amp;
+        file.absolutePath &amp;&amp; typeof file.absolutePath === 'string' &amp;&amp;
+        file.uniqueName   &amp;&amp; typeof file.uniqueName   === 'string'
+    ){
+        return true;
+    }
+    return false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param  {[function]}     param2  - Gulp task param 2, a function (optional)
+ *
+ * @returns - The output of the task function
+ */
+module.exports = function(subfile, tasks, name, param1, param2) {
+
+// param validation
+if (!hutil.<span class="apidocCodeKeywordSpan">isValidHubFile</span>(subfile)) {
+    throw new TypeError('`subfile` must be a valid Gulp Hub file object.');
+}
+if (!_.isPlainObject(tasks)) {
+    throw new TypeError('`tasks` must be a plain object.');
+}
+if (!_.isString(name)) {
+    throw new TypeError('`name` must be a string.');
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
